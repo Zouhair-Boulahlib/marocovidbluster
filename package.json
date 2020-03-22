@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "exemple" : "node exemple.js"
+    "exemple": "node exemple.js",
+    "serve" : "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "puppeteer": "^2.1.1"
   }
 }
