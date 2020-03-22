@@ -3,16 +3,26 @@ const URL = 'https://www.marocovid.com/';
 const URL_API = 'https://app.siendogroup.com/api'
 
 
+async function getData(url) {
 
-async function  getCovidData(headless = false){
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify({"type":"get_chart_data"}) 
+        });
+        return await response.json();
+      }
+
+
+async function  getCovidData(headless = true){
+
         headless = !!headless;
         const browser = await puppeteer.launch({headless});
         const page = await browser.newPage();
-        await page.goto(URL);
 
-        const res = await page.waitForResponse(URL_API);
-        const data = await res.json();
+        await page.goto(URL);
+        const data = await page.evaluate(getData, URL_API)
         await browser.close();
+
        return data;
 
 }
